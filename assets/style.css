@@ -1,0 +1,133 @@
+/*
+  The CSS in this style tag is based off of Bear Blog's default CSS.
+  https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
+  License MIT: https://github.com/HermanMartinus/bearblog/blob/master/LICENSE.md
+  Copied and trimmed from fpigeonjr/astro-blog (src/styles/global.css).
+ */
+
+:root {
+  color-scheme: light dark;
+  --accent-light: #06b6d4;
+  --accent-dark: #22d3ee;
+  --accent: var(--accent-light);
+  /* Keep the blog's cyan accent; deepen small links for readable contrast. */
+  --link: color-mix(in srgb, var(--accent) 65%, #000);
+  --black: 15, 18, 25;
+  --gray: 96, 115, 159;
+  --gray-light: 229, 233, 240;
+  --gray-dark: 34, 41, 57;
+  --gray-gradient: rgba(229, 233, 240, 50%), #fff;
+  --bg-primary: #ffffff;
+  --bg-secondary: rgba(229, 233, 240, 50%);
+  --text-primary: rgb(34, 41, 57);
+  --text-secondary: rgb(88, 106, 148); /* darker than the blog's for WCAG AA on tinted bg */
+  --border: rgb(229, 233, 240);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --accent: var(--accent-dark);
+    --link: var(--accent);
+    --black: 229, 231, 235;
+    --gray: 156, 163, 175;
+    --gray-light: 55, 65, 81;
+    --gray-dark: 209, 213, 219;
+    --gray-gradient: rgba(17, 24, 39, 50%), rgb(17, 24, 39);
+    --bg-primary: rgb(17, 24, 39);
+    --bg-secondary: rgba(17, 24, 39, 50%);
+    --text-primary: rgb(209, 213, 219);
+    --text-secondary: rgb(156, 163, 175);
+    --border: rgb(55, 65, 81);
+  }
+}
+
+@font-face {
+  font-family: "Atkinson";
+  src: url("fonts/atkinson-regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Atkinson";
+  src: url("fonts/atkinson-bold.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Atkinson", sans-serif;
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: linear-gradient(var(--gray-gradient)) no-repeat;
+  background-size: 100% 600px;
+  background-color: var(--bg-primary);
+  overflow-wrap: anywhere;
+}
+
+.site-header, main, footer {
+  width: min(720px, calc(100% - 2.5rem));
+  margin-inline: auto;
+}
+
+.site-header { padding-top: 2.5rem; }
+.site-name { font-size: 1rem; text-decoration: none; }
+h1, h2, h3 { color: rgb(var(--black)); line-height: 1.2; }
+h1 { margin: 1.5rem 0 0.6rem; font-size: 3.052em; letter-spacing: -0.035em; }
+h2 { margin: 0; font-size: 1.4em; }
+h3 { margin: 0; font-size: 1.05em; }
+p { margin: 0; }
+a { color: var(--link); text-underline-offset: 0.18em; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; border-radius: 2px; }
+.lede, .band-hint, .band-count, .repo-meta, .empty, footer { color: var(--text-secondary); }
+
+.summary {
+  margin-top: 1.5rem;
+  padding-block: 0.8rem;
+  border-block: 1px solid var(--border);
+  font-size: 0.85em;
+}
+
+.summary ul, .repo-list { list-style: none; margin: 0; padding: 0; }
+.summary ul { display: flex; flex-wrap: wrap; column-gap: 1.5rem; row-gap: 0.5rem; }
+.summary a { display: inline-block; padding-block: 0.2rem; text-decoration: none; }
+.summary a:hover { text-decoration: underline; }
+main { padding-top: 2.25rem; }
+section { margin-bottom: 2.25rem; scroll-margin-top: 1.5rem; }
+.band-heading { display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem 1rem; flex-wrap: wrap; margin-bottom: 0.8rem; }
+.band-count { font-size: 0.75em; font-weight: 400; }
+.band-hint { font-size: 0.8em; }
+.repo-list { display: grid; gap: 0.65rem; }
+.repo-card { padding: 1rem 1.1rem; border: 1px solid var(--border); border-radius: 8px; background: var(--bg-primary); }
+.repo-card h3 { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.5rem; }
+.repo-card h3 a { text-decoration: none; }
+.repo-card h3 a:hover { text-decoration: underline; }
+.description { margin-top: 0.4rem; font-size: 0.9em; line-height: 1.45; }
+.repo-meta { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 0.4rem; row-gap: 0.15rem; margin-top: 0.5rem; font-size: 0.75em; }
+.repo-meta a { color: inherit; }
+.repo-meta a:hover { color: var(--link); }
+.fork-badge { border: 1px solid var(--border); border-radius: 999px; padding: 0.1rem 0.45rem; color: var(--text-secondary); background: var(--bg-secondary); font-size: 0.65em; font-weight: 400; line-height: 1.2; }
+.empty { font-size: 0.9em; padding-block: 0.5rem; }
+footer { border-top: 1px solid var(--border); padding: 1.5rem 0 3rem; text-align: center; font-size: 0.75em; }
+footer p + p { margin-top: 0.35rem; }
+footer a { color: inherit; }
+footer a:hover { color: var(--link); }
+.skip-link { position: absolute; top: 0.5rem; left: 1rem; padding: 0.5rem 1rem; background: var(--bg-primary); transform: translateY(-200%); }
+.skip-link:focus { transform: translateY(0); }
+
+@media (max-width: 540px) {
+  body { font-size: 18px; }
+  .site-header { padding-top: 1.5rem; }
+  h1 { font-size: 2.5em; }
+  .summary ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.4rem 0.75rem; }
+  .repo-card { padding: 0.9rem; }
+  .band-heading { gap: 0.25rem 0.75rem; }
+  .band-hint { font-size: 0.75em; }
+}

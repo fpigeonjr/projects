@@ -1,0 +1,14 @@
+{
+  "name": "projects",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static dashboard of fpigeonjr's public GitHub projects, grouped by staleness.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "node src/build.js",
+    "test": "node --test"
+  }
+}
